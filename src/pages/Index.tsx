@@ -1,13 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import Navigation from '@/components/Navigation';
+import Hero from '@/components/Hero';
+import BlogSection from '@/components/BlogSection';
+import PurchasesSection from '@/components/PurchasesSection';
+import PlaylistsSection from '@/components/PlaylistsSection';
+import PeopleSection from '@/components/PeopleSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import PodcastsSection from '@/components/PodcastsSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen"
+      >
+        <Navigation />
+        <main id="main-content">
+          <Hero />
+          <BlogSection />
+          <PurchasesSection />
+          <PlaylistsSection />
+          <PeopleSection />
+          <ProjectsSection />
+          <PodcastsSection />
+          <Footer />
+        </main>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
