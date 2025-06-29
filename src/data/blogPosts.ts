@@ -14,5 +14,3 @@ export const blogPosts: BlogPost[] = [
     url: "#blog/pharmacy-tech-future"
   }
 ];
-
-export const sectionSubtitle = "Recent experiences, thoughts, and anything worth sharing.";

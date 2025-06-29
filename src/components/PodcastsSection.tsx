@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { podcasts } from '@/data/podcasts';
 
 const PodcastsSection: React.FC = () => {
@@ -21,31 +21,29 @@ const PodcastsSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {podcasts.map((podcast, index) => (
-            <motion.div
-              key={podcast.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-            >
-              <a
-                href={podcast.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <Accordion type="single" collapsible className="space-y-4">
+            {podcasts.map((podcast, index) => (
+              <AccordionItem
+                key={podcast.title}
+                value={`item-${index}`}
+                className="bg-background rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow duration-200"
               >
-                <Card className="hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg text-center">{podcast.title}</h3>
-                  </CardContent>
-                </Card>
-              </a>
-            </motion.div>
-          ))}
-        </div>
+                <AccordionTrigger className="text-left hover:no-underline py-6">
+                  <span className="text-lg font-medium">{podcast.title}</span>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6">
+                  <p className="text-muted-foreground leading-relaxed">{podcast.reason}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );
