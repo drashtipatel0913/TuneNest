@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import ContactPopover from './ContactPopover';
 
 const Hero: React.FC = () => {
   const scrollToSection = (href: string) => {
@@ -9,28 +10,6 @@ const Hero: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const createConfetti = () => {
-    const colors = ['hsl(var(--primary))', 'hsl(var(--accent))', 'hsl(var(--secondary))'];
-    
-    for (let i = 0; i < 50; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDelay = Math.random() * 3 + 's';
-      document.body.appendChild(confetti);
-
-      setTimeout(() => {
-        confetti.remove();
-      }, 3000);
-    }
-  };
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText('jonty@example.com');
-    createConfetti();
   };
 
   return (
@@ -62,8 +41,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Bridging the gap between healthcare technology and creative expression. 
-          Welcome to my digital playground where innovation meets artistry.
+          This is more of me – feel free to scroll around and get to know me better.
         </motion.p>
 
         <motion.div
@@ -79,14 +57,7 @@ const Hero: React.FC = () => {
           >
             View Projects
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={copyEmail}
-            className="text-lg px-8 py-3 hover:scale-105 transition-transform duration-200"
-          >
-            Say Hi 👋
-          </Button>
+          <ContactPopover />
         </motion.div>
       </div>
     </section>

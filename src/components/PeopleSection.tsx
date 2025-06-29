@@ -21,7 +21,7 @@ const PeopleSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {people.map((person, index) => (
             <motion.div
               key={person.name}
@@ -31,21 +31,23 @@ const PeopleSection: React.FC = () => {
               viewport={{ once: true }}
               whileHover={{ y: -5, scale: 1.02 }}
             >
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
+              <a
+                href={person.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-6 text-center">
                     <img
                       src={person.avatar}
                       alt={person.name}
-                      className="w-16 h-16 rounded-full object-cover"
+                      className="w-16 h-16 rounded-full object-cover mx-auto mb-4"
                     />
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg mb-2">{person.name}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{person.blurb}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    <h3 className="font-semibold text-lg">{person.name}</h3>
+                  </CardContent>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </div>

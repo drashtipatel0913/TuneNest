@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { blogPosts } from '@/data/blogPosts';
+import { blogPosts, sectionSubtitle } from '@/data/blogPosts';
 
 const BlogSection: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const BlogSection: React.FC = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Recent Thoughts</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Sharing insights on healthcare technology, creative processes, and everything in between.
+            {sectionSubtitle}
           </p>
         </motion.div>
 
