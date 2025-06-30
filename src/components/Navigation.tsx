@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           onClick={() => scrollToSection('#hero')}
         >
-          Jonty Hub
+          Jonty C
         </motion.div>
 
         {/* Desktop Navigation */}
