@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
+import { ExternalLink } from 'lucide-react';
 import { people } from '@/data/people';
 
 const PeopleSection: React.FC = () => {
@@ -21,32 +22,39 @@ const PeopleSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {people.map((person, index) => (
-            <motion.div
+            <motion.a
               key={person.name}
+              href={person.website}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.12,
+                ease: "easeOut"
+              }}
               viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ 
+                scale: 1.03, 
+                boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.97 }}
+              className="block"
             >
-              <Card className="hover:shadow-lg transition-all duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 h-full border rounded-lg">
                 <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <img
-                      src={person.avatar}
-                      alt={person.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg mb-2">{person.name}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{person.blurb}</p>
-                    </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-bold text-lg">{person.name}</h3>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground" />
                   </div>
+                  <p className="text-muted-foreground leading-relaxed">{person.blurb}</p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
